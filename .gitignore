@@ -1,0 +1,7 @@
+node_modules/
+dist/
+src/db/migrations/*.sql
+src/db/migrations/meta/*.json
+.env
+package-lock.json
+server.log
