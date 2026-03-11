@@ -2,6 +2,15 @@
 
 ## Introduction
 
+Chirpy is a very basic back end server api for posting short messages written in TypeScript with a PostegreSQL database server.
+
+features:
+- readiness handler for... kubernetes?
+- create user, update user, login user that return a JWT access token and a JWT refresh token. 
+- create chirp, delete chirp, get chirps by author or all and chose ordering, get individual chirp, with JWT token autentification.
+- refresh JWT token, revoke JWT token.
+- basic metrics endpoint, reset endpoint.
+- basic webhook endpoint with ApiKey.
 
 ## Requirements
 
@@ -12,7 +21,7 @@
 ## Installation
 - install NVM
 - install Node we will user 21.7.0, NVM will take care of it normally
-- run `nvm use`
+- run `nvm install` for next time, you can use `nvm use`
 - run `node --version` expecting v21.7.0
 - install PostgreSQL we need a database server, by default locally but you can use a pre-existing one
 - as postgres admin, create the chirpy database and set a login/password postgres/postgres user:
