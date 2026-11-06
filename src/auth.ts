@@ -44,16 +44,26 @@ export function validateJWT(tokenString: string, secret: string): string {
   return payload.sub; // return the user ID from the token
 }
 
-export function getBearerToken(req: Request): string {
-  const authHeader = req.headers["authorization"];
-  if (!authHeader) {
-    throw new Error("Authorization header is missing");
+export class BadRequestError extends Error {
+  constructor(message: string, options?: ErrorOptions) {
+    super(message, options);
+    this.name = new.target.name;
   }
-  const parts = authHeader.split(" ");
+}
+
+export function extractBearerToken(authorization: string | undefined): string {
+  if (!authorization) {
+    throw new BadRequestError("Authorization header is missing");
+  }
+  const parts = authorization.split(" ");
   if (parts.length !== 2 || parts[0] !== "Bearer") {
-    throw new Error("Authorization header must be in the format 'Bearer <token>'");
+    throw new BadRequestError("Authorization header must be in the format 'Bearer <token>'");
   }
   return parts[1];
+}
+
+export function getBearerToken(req: Request): string {
+  return extractBearerToken(req.headers["authorization"]);
 }
 
 export function getAPIKey(req: Request): string {

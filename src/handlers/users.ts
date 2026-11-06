@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { User, NewUser } from "../db/schema";
+import { User, NewUser } from "../db/schema.js";
 import { createUser, getUserByEmail, updateUser, upgradeUser } from "../db/queries/users.js";
 import { hashPassword, checkPasswordHash, makeJWT, validateJWT, getBearerToken, getAPIKey } from "../auth.js";
 import config from "../config.js";
